@@ -1,12 +1,26 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Editor from "./components/Editor";
-
+import useLocalStorage from "./hooks/useLocalStorage";
 
 function App() {
-  const [count, setCount] = useState(0);
-  const [html, setHtml] = useState("");
-  const [css, setCss] = useState("");
-  const [js, setJs] = useState("");
+  const [html, setHtml] = useLocalStorage("html", "");
+  const [css, setCss] = useLocalStorage("css", "");
+  const [js, setJs] = useLocalStorage("js", "");
+  const [sourceCode, setSourceCode] = useState("");
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setSourceCode(`
+      <html>
+        <body>${html}</body>
+        <style>${css}</style>
+        <script>${js}</script>
+      </html>
+    `);
+    }, 250);
+
+    return () => clearTimeout(timeout);
+  }, [html, css, js]);
 
   return (
     <>
@@ -30,7 +44,16 @@ function App() {
           onChange={(code: string) => setJs(code)}
         />
       </div>
-      <div className="pane">Hello World</div>
+      <div className="pane">
+        <iframe
+          srcDoc={sourceCode}
+          title="Output"
+          sandbox="allow-scripts"
+          frameBorder="0"
+          width="100%"
+          height="100%"
+        />
+      </div>
     </>
   );
 }
