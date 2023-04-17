@@ -1,13 +1,12 @@
 body {
   margin: 0;
+  box-sizing: border-box;
+  background-image: linear-gradient(to right top, #351934, #29192e, #201826, #18151d, #121212);
 }
 
 .top-pane {
-  background-color: hsl(225, 6%, 25%);
-}
-
-.pane {
-  height: 50vh;
+  height: 45vh;
+  padding: 0.5rem 2rem 2rem;
   display: flex;
 }
 
@@ -17,7 +16,6 @@ body {
   display: flex;
   flex-direction: column;
   padding: 0.5rem;
-  background-color: hsl(225, 6%, 25%);
 }
 
 .editor-container.collapsed {
@@ -56,4 +54,37 @@ body {
   border-bottom-right-radius: 0.5rem;
   border-bottom-left-radius: 0.5rem;
   overflow: hidden;
+}
+
+.result-container {
+  width: 100%;
+  height: 48vh;
+  padding: 0 2rem 0 2rem;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.result-window {
+ border-radius: 1rem;
+ background-color: white;
+}
+
+.output-title{
+  position: absolute;
+  top: -1.5rem;
+  left: -1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+}
+
+.output-title-text{
+  background-color: #121212;
+  padding: 0 1rem 0 1rem;
+  border-radius: 2rem;
+  color: white;
+  line-height: 0.75rem;
+  font-size: 0.5rem;
 }

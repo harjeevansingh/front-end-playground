@@ -24,7 +24,7 @@ function App() {
 
   return (
     <>
-      <div className="pane top-pane">
+      <div className="top-pane">
         <Editor
           language="xml"
           displayName="Html"
@@ -44,7 +44,12 @@ function App() {
           onChange={(code: string) => setJs(code)}
         />
       </div>
-      <div className="pane">
+      <div className="result-container">
+        <div className="output-title">
+          <div className="output-title-text">
+            <h1>Result</h1>
+          </div>
+        </div>
         <iframe
           srcDoc={sourceCode}
           title="Output"
@@ -52,6 +57,7 @@ function App() {
           frameBorder="0"
           width="100%"
           height="100%"
+          className="result-window"
         />
       </div>
     </>
